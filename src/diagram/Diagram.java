@@ -19,6 +19,7 @@ public class Diagram {
 	private boolean imageExpired;
 	
 	public Diagram(String xcaption, String ycaption) {
+		this.plots = new LinkedList<>();
 		this.xcaption = xcaption;
 		this.ycaption = ycaption;
 		imageExpired = true;
@@ -26,7 +27,7 @@ public class Diagram {
 	
 	public void addPlot(Plot plot) {
 		plots.add(plot);
-		imageExpired = false;
+		imageExpired = true;
 	}
 	
 	public Image getImage() {

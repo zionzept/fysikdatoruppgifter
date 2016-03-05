@@ -15,11 +15,12 @@ public class DiagramDisplay {
 	public void show() {
 		JFrame frame = new JFrame(diagram.toString());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setSize(600, 400);
 		@SuppressWarnings("serial")
 		JPanel panel = new JPanel() {
 			@Override
 			public void paint(Graphics g) {
-				g.drawImage(diagram.getImage(), 0, 0, null);
+				g.drawImage(diagram.getImage(), 10, 10, null);
 			}
 		};
 		frame.add(panel);
