@@ -1,6 +1,11 @@
-package diagram;
+package Tasks;
 
 import java.util.LinkedList;
+
+import diagram.Diagram;
+import diagram.DiagramDisplay;
+import diagram.Plot;
+import diagram.Point;
 
 public class Task2 {
 	public static void main(String[] args){
