@@ -38,4 +38,9 @@ public class Bounds {
 		double y1 = Math.max(bottom, bounds.bottom);
 		return new Bounds(x0, y0, x1, y1);
 	}
+	
+	@Override
+	public String toString() {
+		return "[(" + left + ", " + top + "), (" + right + ", " + bottom + ")]";
+	}
 }

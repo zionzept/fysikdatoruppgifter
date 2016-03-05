@@ -58,7 +58,7 @@ public class Plot {
 				y1 = p.getY();
 			}
 		}
-		return new Bounds(x0, x1, y0, y1);
+		return new Bounds(x0, y0, x1, y1);
 	}
 	
 	@Override
