@@ -1,5 +1,7 @@
 package diagram;
 
+import java.util.LinkedList;
+
 public class Task1 {
 	
 	public static void main(String args[]){
@@ -10,11 +12,30 @@ public class Task1 {
 		double Rs = Math.pow(Math.sin(a1 - a2), Math.sin(a1 + a2)); //Reflektans s-polariserat
 		double Rp = Math.pow(Math.tan(a1 - a2), Math.tan(a1 + a2)); //Reflektans p-polariserat
 		
-		Plot p1 = new Plot();
-		Plot p2 = new Plot();
+		/*x-axis bounds and scaling*/
+		double from = 0;
+		double to = 10;
+		double scaling = 1;
 		
-		Diagram d1 = new Diagram("infallsvinkel a1", "Reflektans s-polarisation");
-		Diagram d2 = new Diagram("infallsvinkel a1", "Reflektans p-polarisation");
+		
+		Diagram d1 = new Diagram("infallsvinkel a1/°", "Reflektans, s-polarisation");
+		Diagram d2 = new Diagram("infallsvinkel a1/°", "Reflektans, p-polarisation");
+		
+		LinkedList<Point> points1 = new LinkedList<Point>();
+		double i= from;
+		while(i <= to){
+			//points1.add(new Point());
+			i += scaling;
+		}
+		
+		LinkedList<Point> points2 = new LinkedList<Point>();
+		i= from;
+		while(i <= to){
+			//points2.add(new Point());
+			i += scaling;
+		}
+		Plot p1 = new Plot(points1);
+		Plot p2 = new Plot(points2);
 		
 		d1.addPlot(p1);
 		d2.addPlot(p2);
@@ -23,7 +44,5 @@ public class Task1 {
 		DiagramDisplay disp2 = new DiagramDisplay(d2);
 		disp1.show();
 		disp2.show();
-		
-		
 	}
 }
