@@ -2,32 +2,49 @@ package diagram;
 
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.List;
 
 public class Plot {
-	public List<Point> points;
+	public LinkedList<Point> points;
 	
-	public Plot() {
-		this.points = new LinkedList<>();
-	}
-	
-	public Plot(List<Point> points) {
+	public Plot(LinkedList<Point> points) {
 		this.points = points;
 		Collections.sort(points);
 	}
 	
-	public void add(List<Point> points) {
-		this.points.addAll(points);
-		Collections.sort(points);
+	public LinkedList<Point> getPoints() {
+		return new LinkedList<Point>(points);
 	}
 	
-	public void add(Point point) {
-		this.points.add(point);
-		Collections.sort(points);
+	public double getMinX() {
+		return points.get(0).getX();
 	}
 	
-	public List<Point> getPoints() {
-		return points;
+	public double getMaxX() {
+		return points.get(points.size() - 1).getX();
+	}
+	
+	public double getMinY() {
+		return points.get(0).getX();
+	}
+	
+	public double getMaxY() {
+		return points.get(points.size() - 1).getX();
+	}
+	
+	public Bounds getBounds() {
+		double x0 = points.get(0).getX();
+		double x1 = points.get(points.size() - 1).getX();
+		double y0 = Double.MAX_VALUE;
+		double y1 = Double.MIN_VALUE;
+		for (Point p : points) {
+			if (p.getY() < y0) {
+				y0 = p.getY();
+			}
+			if (p.getY() > y1) {
+				y1 = p.getY();
+			}
+		}
+		return new Bounds(x0, x1, y0, y1);
 	}
 	
 	@Override
