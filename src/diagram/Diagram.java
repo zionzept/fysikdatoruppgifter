@@ -68,18 +68,17 @@ public class Diagram {
 			System.out.println("  Points: " + points.size());
 			for (Point point : points) {
 				System.out.println("   " + point.getX() + " " + point.getY());
+				int x = convertX(point.getX());
+				int y = convertY(point.getY());
+				System.out.println("  convert: " + point.getX() + "," + point.getY() + "  ->  " + x + ", " + y);
 				if (first) {
-					prevX = convertX(point.getX());
-					prevY = convertY(point.getY());
-					g.drawLine(prevX, prevY, prevX, prevY);
+					g.drawLine(SPACING + x, SPACING + y, SPACING + x, SPACING + y);
 					first = false;
 				} else {
-					int x = convertX(point.getX());
-					int y = convertY(point.getY());
-					g.drawLine(prevX, prevY, x, y);
-					prevX = x;
-					prevY = y;
+					g.drawLine(SPACING + prevX, SPACING + prevY, SPACING + x, SPACING + y);
 				}
+				prevX = x;
+				prevY = y;
 			}
 		}
 		
@@ -88,10 +87,12 @@ public class Diagram {
 	}
 	
 	private int convertX(double x) {
-		return (int)(WIDTH * x / (bounds.getRight() - bounds.getLeft()));
+		System.out.println("x: " + x + " : " + (x - bounds.getLeft()) + "  /  " + (bounds.getRight() - bounds.getLeft()));
+		return (int)(WIDTH * (x - bounds.getLeft()) / (bounds.getRight() - bounds.getLeft()));
 	}
 	
 	private int convertY(double y) {
-		return (int)(HEIGHT * y / (bounds.getBottom() - bounds.getTop()));
+		System.out.println("y: " + y + " : " + (y - bounds.getTop()) + "  /  " + (bounds.getBottom() - bounds.getTop()));
+		return (int)(HEIGHT * (y - bounds.getTop()) / (bounds.getBottom() - bounds.getTop()));
 	}
 }
