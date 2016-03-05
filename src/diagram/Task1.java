@@ -11,8 +11,9 @@ public class Task1 {
 		double scaling = 1;
 		
 		double n1 = 1.0;	//brytningsindex luft
-		double n2 = 1.75;	//brytningsindex flintglas		
-		double a2;	//infallsvinkel a1
+		double n2 = 1.75;	//brytningsindex flintglas	
+		double a1;	//infallsvinkel a1
+		double a2;	//infallsvinkel a2
 		double Rs;	//Reflektans s-polariserat
 		double Rp;	//Reflektans p-polariserat
 		
@@ -22,7 +23,7 @@ public class Task1 {
 		
 		/*Rs*/
 		LinkedList<Point> points1 = new LinkedList<Point>();
-		double a1= from;
+		a1= from;
 		while(a1 <= to){
 			a2 = Math.asin(n1/n2*Math.sin(a1));	//infallsvinkel a2
 			Rs = Math.pow(Math.sin(a1 - a2), Math.sin(a1 + a2)); //Reflektans s-polariserat
@@ -60,19 +61,21 @@ public class Task1 {
 		
 		/*Rs*/
 		LinkedList<Point> points3 = new LinkedList<Point>();
-		a1= from;
-		while(a1 <= to){
-			a2 = Math.asin(n1/n2*Math.sin(a1));	//infallsvinkel a2
-			//points2.add(new Point());
-			a1 += scaling;
+		a2= from;
+		while(a2 <= to){
+			a1 = Math.asin(n2/n1*Math.sin(a2));	//infallsvinkel a1
+			Rs = Math.pow(Math.sin(a2 - a1), Math.sin(a2 + a1)); //Reflektans s-polariserat
+			points3.add(new Point(a2, Rs));
+			a2 += scaling;
 		}
 		/*Rp*/
 		LinkedList<Point> points4 = new LinkedList<Point>();
-		a1= from;
-		while(a1 <= to){
-			a2 = Math.asin(n1/n2*Math.sin(a1));	//infallsvinkel a2
-			//points2.add(new Point());
-			a1 += scaling;
+		a2= from;
+		while(a2 <= to){
+			a1 = Math.asin(n2/n1*Math.sin(a2));	//infallsvinkel a1
+			Rp = Math.pow(Math.tan(a2 - a1), Math.tan(a2 + a1)); //Reflektans p-polariserat
+			points4.add(new Point(a2, Rp));
+			a2 += scaling;
 		}
 		
 		Plot p3 = new Plot(points3);
