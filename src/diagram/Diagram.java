@@ -47,9 +47,9 @@ public class Diagram {
 	}
 	
 	public Image generateImage() {
-		image = new BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_4BYTE_ABGR);
+		image = new BufferedImage(WIDTH + 2 * SPACING, HEIGHT + 2 * SPACING, BufferedImage.TYPE_4BYTE_ABGR);
 		Graphics g = image.getGraphics();
-		g.fillRect(0, 0, WIDTH, HEIGHT);
+		g.fillRect(0, 0, WIDTH + 2 * SPACING, HEIGHT + 2 * SPACING);
 		
 		g.setColor(Color.BLACK);
 		
