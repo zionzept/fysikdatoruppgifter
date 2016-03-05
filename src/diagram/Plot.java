@@ -7,12 +7,12 @@ public class Plot {
 	public LinkedList<Point> points;
 	
 	public Plot(LinkedList<Point> points) {
-		this.points = points;
+		this.points = new LinkedList<>(points);
 		Collections.sort(points);
 	}
 	
 	public LinkedList<Point> getPoints() {
-		return new LinkedList<Point>(points);
+		return new LinkedList<>(points);
 	}
 	
 	public double getMinX() {
