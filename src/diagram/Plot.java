@@ -1,14 +1,25 @@
 package diagram;
 
+import java.awt.Color;
 import java.util.Collections;
 import java.util.LinkedList;
 
 public class Plot {
-	public LinkedList<Point> points;
+	private LinkedList<Point> points;
+	private Color color;
 	
 	public Plot(LinkedList<Point> points) {
+		this.color = Color.BLACK;
 		this.points = new LinkedList<>(points);
 		Collections.sort(points);
+	}
+	
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	public Color getColor() {
+		return color;
 	}
 	
 	public LinkedList<Point> getPoints() {
@@ -32,6 +43,9 @@ public class Plot {
 	}
 	
 	public Bounds getBounds() {
+		if (points.isEmpty()) {
+			return Bounds.ZERO;
+		}
 		double x0 = points.get(0).getX();
 		double x1 = points.get(points.size() - 1).getX();
 		double y0 = Double.MAX_VALUE;
