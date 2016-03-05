@@ -23,9 +23,9 @@ public class TaskPlotter {
 			Diagram d = t.getDiagram();
 			for(Plot p: plots){
 			d.addPlot(p);
-			}
 			DiagramDisplay disp = new DiagramDisplay(d);
 			disp.show();	
+			}
 		}
 	}
 	
