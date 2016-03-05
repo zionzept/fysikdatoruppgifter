@@ -57,6 +57,7 @@ public class Diagram {
 		g.drawLine(SPACING + WIDTH, SPACING, SPACING + WIDTH, SPACING + HEIGHT);
 		g.drawLine(SPACING, SPACING, SPACING + WIDTH, SPACING);
 		g.drawLine(SPACING, SPACING + HEIGHT, SPACING + WIDTH, SPACING + HEIGHT);
+		System.out.println("Bounds " + bounds);
 		System.out.println("plots: " + plots.size());
 		for (Plot plot : plots) {
 			g.setColor(plot.getColor());
@@ -66,10 +67,12 @@ public class Diagram {
 			int prevY = 0;
 			System.out.println("  Points: " + points.size());
 			for (Point point : points) {
+				System.out.println("   " + point.getX() + " " + point.getY());
 				if (first) {
 					prevX = convertX(point.getX());
 					prevY = convertY(point.getY());
 					g.drawLine(prevX, prevY, prevX, prevY);
+					first = false;
 				} else {
 					int x = convertX(point.getX());
 					int y = convertY(point.getY());

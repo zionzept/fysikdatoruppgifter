@@ -5,16 +5,16 @@ import java.util.LinkedList;
 public class Task2 {
 	public static void main(String[] args){
 		/*x-axis bounds and scaling*/
-		double from = 400 *Math.pow(10,-9);	//våglängd, m
-		double to = 700 *Math.pow(10,-9);	//våglängd, m
+		double from = 400 *Math.pow(10,-9);	//vï¿½glï¿½ngd, m
+		double to = 700 *Math.pow(10,-9);	//vï¿½glï¿½ngd, m
 		double scaling = 10 *Math.pow(10,-9);
 		
 		
-		double lambda; //våglängd
-		double f; avstånd till bildbrännvidd.
+		double lambda; //vï¿½glï¿½ngd
+		double f; //avstï¿½nd till bildbrï¿½nnvidd.
 		double n1 = 1; //brytningsindex luft
 		double n2 = 1.5; //brytningsindex glas;
-		double R = 0.15; //Krökningsradie, m
+		double R = 0.15; //Krï¿½kningsradie, m
 		double D = 0.1; //Diameter i meter
 		
 		
@@ -35,7 +35,7 @@ public class Task2 {
 	/////////////////////////////////Uppgift 2b/////////////////////////////////
 		Diagram d2 = new Diagram(" ", "");
 		LinkedList<Point> points2 = new LinkedList<>();
-		double squaredN; //brytningsindex BK7 glas, upphöjt med 2
+		double squaredN; //brytningsindex BK7 glas, upphï¿½jt med 2
 		lambda = from;
 		while(lambda  <= to){
 			

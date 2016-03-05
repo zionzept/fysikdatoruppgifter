@@ -6,7 +6,7 @@ public class Task1 {
 	
 	public static void main(String args[]){
 		/*x-axis bounds and scaling*/
-		double from = 0;
+		double from = 1;
 		double to = 10;
 		double scaling = 1;
 		
@@ -17,16 +17,19 @@ public class Task1 {
 		double Rs;	//Reflektans s-polariserat
 		double Rp;	//Reflektans p-polariserat
 		
-	/////////////////////////////////Uppgift 1a ljus från luft till glas/////////////////////////////////
-		Diagram d1 = new Diagram("infallsvinkel a1/°", "Reflektans, s-polarisation");
-		Diagram d2 = new Diagram("infallsvinkel a1/°", "Reflektans, p-polarisation");
+	/////////////////////////////////Uppgift 1a ljus frï¿½n luft till glas/////////////////////////////////
+		Diagram d1 = new Diagram("infallsvinkel a1/ï¿½", "Reflektans, s-polarisation");
+		Diagram d2 = new Diagram("infallsvinkel a1/ï¿½", "Reflektans, p-polarisation");
 		
 		/*Rs*/
 		LinkedList<Point> points1 = new LinkedList<Point>();
 		a1= from;
 		while(a1 <= to){
-			a2 = Math.asin(n1/n2*Math.sin(a1));	//infallsvinkel a2
-			Rs = Math.pow(Math.sin(a1 - a2), Math.sin(a1 + a2)); //Reflektans s-polariserat
+			double r1 = Math.toRadians(a1);
+			double r2 = Math.asin(n1/n2*Math.sin(r1));	//infallsvinkel a2
+			a2 = Math.toDegrees(r2);
+			System.out.println(a1 + " " + a2);
+			Rs = Math.pow(Math.sin(r1 - r2) / Math.sin(r1 + r2), 2); //Reflektans s-polariserat
 			points1.add(new Point(a1, Rs));
 			a1 += scaling;
 		}
@@ -36,8 +39,8 @@ public class Task1 {
 		a1= from;
 		while(a1 <= to){
 			a2 = Math.asin(n1/n2*Math.sin(a1));	//infallsvinkel a2
-			Rp = Math.pow(Math.tan(a1 - a2), Math.tan(a1 + a2)); //Reflektans p-polariserat
-			points1.add(new Point(a1, Rp));
+			Rp = Math.pow(Math.tan(a1 - a2) / Math.tan(a1 + a2), 2); //Reflektans p-polariserat
+			points2.add(new Point(a1, Rp));
 			a1 += scaling;
 		}
 		
@@ -54,17 +57,17 @@ public class Task1 {
 		
 	/////////////////////////////////UPPGIFT 1a END/////////////////////////////////
 		
-/////////////////////////////////Uppgift 1b ljus från glas till luft/////////////////////////////////
+/////////////////////////////////Uppgift 1b ljus frï¿½n glas till luft/////////////////////////////////
 		
-		Diagram d3 = new Diagram("infallsvinkel a1/°", "Reflektans, s-polarisation");
-		Diagram d4 = new Diagram("infallsvinkel a1/°", "Reflektans, p-polarisation");
+		Diagram d3 = new Diagram("infallsvinkel a1/ï¿½", "Reflektans, s-polarisation");
+		Diagram d4 = new Diagram("infallsvinkel a1/ï¿½", "Reflektans, p-polarisation");
 		
 		/*Rs*/
 		LinkedList<Point> points3 = new LinkedList<Point>();
 		a2= from;
 		while(a2 <= to){
 			a1 = Math.asin(n2/n1*Math.sin(a2));	//infallsvinkel a1
-			Rs = Math.pow(Math.sin(a2 - a1), Math.sin(a2 + a1)); //Reflektans s-polariserat
+			Rs = Math.pow(Math.sin(a2 - a1) / Math.sin(a2 + a1), 2); //Reflektans s-polariserat
 			points3.add(new Point(a2, Rs));
 			a2 += scaling;
 		}
@@ -73,7 +76,7 @@ public class Task1 {
 		a2= from;
 		while(a2 <= to){
 			a1 = Math.asin(n2/n1*Math.sin(a2));	//infallsvinkel a1
-			Rp = Math.pow(Math.tan(a2 - a1), Math.tan(a2 + a1)); //Reflektans p-polariserat
+			Rp = Math.pow(Math.tan(a2 - a1) / Math.tan(a2 + a1), 2); //Reflektans p-polariserat
 			points4.add(new Point(a2, Rp));
 			a2 += scaling;
 		}
