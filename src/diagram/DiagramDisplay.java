@@ -15,7 +15,8 @@ public class DiagramDisplay {
 	public void show() {
 		JFrame frame = new JFrame(diagram.toString());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(600, 400);
+		frame.setSize(700, 520);
+		frame.setLocationRelativeTo(null);
 		@SuppressWarnings("serial")
 		JPanel panel = new JPanel() {
 			@Override

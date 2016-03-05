@@ -57,13 +57,14 @@ public class Diagram {
 		g.drawLine(SPACING + WIDTH, SPACING, SPACING + WIDTH, SPACING + HEIGHT);
 		g.drawLine(SPACING, SPACING, SPACING + WIDTH, SPACING);
 		g.drawLine(SPACING, SPACING + HEIGHT, SPACING + WIDTH, SPACING + HEIGHT);
-		
+		System.out.println("plots: " + plots.size());
 		for (Plot plot : plots) {
 			g.setColor(plot.getColor());
 			LinkedList<Point> points = plot.getPoints();
 			boolean first = true;
 			int prevX = 0;
 			int prevY = 0;
+			System.out.println("  Points: " + points.size());
 			for (Point point : points) {
 				if (first) {
 					prevX = convertX(point.getX());
