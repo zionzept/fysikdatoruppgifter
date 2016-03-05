@@ -81,8 +81,8 @@ public class Task1 {
 		Plot p3 = new Plot(points3);
 		Plot p4 = new Plot(points4);
 		
-		d1.addPlot(p3);
-		d2.addPlot(p4);
+		d3.addPlot(p3);
+		d4.addPlot(p4);
 	
 		DiagramDisplay disp3 = new DiagramDisplay(d3);
 		DiagramDisplay disp4 = new DiagramDisplay(d4);
