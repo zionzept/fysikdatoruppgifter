@@ -8,20 +8,20 @@ import diagram.Plot;
 import diagram.Point;
 
 public class Task1a extends Task{
-	LinkedList<Point> points1;
-	LinkedList<Point> points2;
+	private LinkedList<Point> points1;
+	private LinkedList<Point> points2;
 	
-	double n1 = 1.0;	//brytningsindex luft
-	double n2 = 1.75;	//brytningsindex flintglas	
+	private final double n1 = 1.0;	//brytningsindex luft
+	private final double n2 = 1.75;	//brytningsindex flintglas	
+	
 //	double x;	
 //	double a2;	//brytningsvinkel a2
 //	double Rs;	//Reflektans s-polariserat
 //	double Rp;	//Reflektans p-polariserat
-	
 	public Task1a(double from, double to, int points){
 		super(from, to, points, new Diagram("1a", "infallsvinkel a1/�", "Reflektans", 2, 1));
-		points1 = new LinkedList<Point>();	
-		points2 = new LinkedList<Point>();
+		this.points1 = new LinkedList<Point>();	
+		this.points2 = new LinkedList<Point>();
 	}
 
 	@Override

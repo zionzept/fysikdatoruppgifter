@@ -8,15 +8,16 @@ import diagram.Plot;
 import diagram.Point;
 
 public class Task2a extends Task{
-	LinkedList<Point> points1;
-//	double f0; //avstånd till bildbrännvidd från origo
-	double n1 = 1; //brytningsindex luft
-	double n2 = 1.5; //brytningsindex glas;
-	double R = 0.15; //Krï¿½kningsradie, m
+	private LinkedList<Point> points;
 	
+	private final double n1 = 1; //brytningsindex luft
+	private final double n2 = 1.5; //brytningsindex glas;
+	private final double R = 0.15; //Krï¿½kningsradie, m
+	
+//	double f0; //avstånd till bildbrännvidd från origo
 	public Task2a(double from, double to, int points) {
 		super(from, to, points, new Diagram("2a", "höjd h/cm", "avstånd f/cm", 1, 3));
-		points1 = new LinkedList<>();
+		this.points = new LinkedList<>();
 	}
 
 	@Override
@@ -24,12 +25,12 @@ public class Task2a extends Task{
 		double f0 = n1*R/(n2-n1);
 		double xx = f0 - R + Math.sqrt(Math.pow(R, 2) - Math.pow(x, 2));
 		double f = Math.sqrt(Math.pow(xx, 2) + Math.pow(x, 2));
-		points1.add(new Point(x*100, f*100));
+		points.add(new Point(x*100, f*100));
 	}
 
 	@Override
 	public void finish() {
-		Plot p1 = new Plot(points1);
+		Plot p1 = new Plot(points);
 		p1.setColor(Color.blue);
 		getPlots().add(p1);
 	}
