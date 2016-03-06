@@ -12,7 +12,7 @@ public class Task2c extends Task{
 	
 	private final double n1 = 1; //brytningsindex luft
 	private final double R = 0.15; //Krï¿½kningsradie, m
-	private final double h = 0.05; //höjd, m
+	private final double h = 0.04; //höjd, m
 	
 	private final double a1 = 2.271176;
 	private final double a2 = -9.700709E-3;
@@ -30,17 +30,20 @@ public class Task2c extends Task{
 
 	@Override
 	public void compute(double x) {//vï¿½glï¿½ngd
-		double squaredN = a1 + a2 * Math.pow(x, 2)
+		double n = Math.sqrt(a1 + a2 * Math.pow(x, 2)
 				+ a3 * Math.pow(x, -2) + a4 * Math.pow(x, -4)
-				+ a5 * Math.pow(x, -6) + a6 * Math.pow(x, -8);
-		double f0 = n1*R/(Math.sqrt(squaredN)-n1);
-		double xx = f0 - R + Math.sqrt(Math.pow(R, 2) - Math.pow(h, 2));
-		double f = Math.sqrt(Math.pow(xx, 2) + Math.pow(h, 2));
+				+ a5 * Math.pow(x, -6) + a6 * Math.pow(x, -8));
+		double i = Math.asin(h / R);
+		double r = Math.asin(n1 * Math.sin(i) / n);
+		double v = Math.PI / 2 - i + r;
+		double d = Math.sqrt(R * R - h * h);
+		double f = R - d + h * Math.tan(v);
 		points.add(new Point(x, f*100));
 	}
 
 	@Override
 	public void finish() {
+		System.out.println("yay");
 		Plot p1 = new Plot(points);
 		p1.setColor(Color.blue);
 		getPlots().add(p1);

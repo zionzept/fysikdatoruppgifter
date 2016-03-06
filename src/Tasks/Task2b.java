@@ -25,10 +25,10 @@ public class Task2b extends Task {
 
 	@Override
 	public void compute(double x) {// vï¿½glï¿½ngd
-		double squaredN = a1 + a2 * Math.pow(x, 2)
+		double n = Math.sqrt(a1 + a2 * Math.pow(x, 2)
 				+ a3 * Math.pow(x, -2) + a4 * Math.pow(x, -4)
-				+ a5 * Math.pow(x, -6) + a6 * Math.pow(x, -8);
-		points.add(new Point(x, Math.sqrt(squaredN)));
+				+ a5 * Math.pow(x, -6) + a6 * Math.pow(x, -8));
+		points.add(new Point(x, n));
 	}
 
 	@Override
