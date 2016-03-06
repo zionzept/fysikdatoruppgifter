@@ -14,7 +14,7 @@ public class TaskPlotter {
 	public TaskPlotter(){
 		LinkedList<Task> tasks = new LinkedList<Task>();
 	
-		Task t1a = new Task1a(1,10,-1);
+		Task t1a = new Task1a(1,90,1);
 		tasks.add(t1a);
 
 		
@@ -23,9 +23,9 @@ public class TaskPlotter {
 			Diagram d = t.getDiagram();
 			for(Plot p: plots){
 			d.addPlot(p);
+			}
 			DiagramDisplay disp = new DiagramDisplay(d);
 			disp.show();	
-			}
 		}
 	}
 	
