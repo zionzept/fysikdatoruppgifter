@@ -15,7 +15,7 @@ public class Task1a extends Task{
 	private final double n2 = 1.75;	//brytningsindex flintglas	
 	
 	public Task1a(double from, double to, int points){
-		super(from, to, points, new Diagram("1a", "Infallsvinkel a1/°", "Reflektans", 2, 1));
+		super(from, to, points, new Diagram("1a", "Infallsvinkel a1/Â°", "Reflektans", 2, 1));
 		this.points1 = new LinkedList<Point>();	
 		this.points2 = new LinkedList<Point>();
 	}
