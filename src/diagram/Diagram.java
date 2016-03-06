@@ -67,7 +67,7 @@ public class Diagram {
 		for (Double xd : xMarkings) {
 			int x = convertX(xd);
 			g.drawLine(SPACING + x, HEIGHT + SPACING, SPACING + x, HEIGHT + SPACING - MARK_LENGTH);
-			BigDecimal d = new BigDecimal(xd).round(new MathContext(2));
+			BigDecimal d = new BigDecimal(xd).round(new MathContext(3));
 			int xOffset = -g.getFontMetrics().stringWidth(d.toString()) / 2;
 			int yOffset = (int)Math.round(g.getFontMetrics().getHeight() / 3d * 2d);
 			g.drawString(d.toString(), SPACING + x + xOffset, HEIGHT + SPACING + TEXT_SPACING + yOffset);
@@ -75,7 +75,7 @@ public class Diagram {
 		for (Double yd : yMarkings) {
 			int y = convertY(yd);
 			g.drawLine(SPACING, SPACING + y, SPACING + MARK_LENGTH, SPACING + y);
-			BigDecimal d = new BigDecimal(yd).round(new MathContext(2));
+			BigDecimal d = new BigDecimal(yd).round(new MathContext(3));
 			int xOffset = -g.getFontMetrics().stringWidth(d.toString());
 			int yOffset = (int)Math.round(g.getFontMetrics().getHeight() / 3d);
 			g.drawString(d.toString(), SPACING - TEXT_SPACING + xOffset, SPACING + y + yOffset);
