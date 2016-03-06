@@ -1,5 +1,6 @@
 package Tasks;
 
+import java.awt.Color;
 import java.util.LinkedList;
 
 import diagram.Diagram;
@@ -10,7 +11,7 @@ import diagram.Point;
 public class Task2a extends Task{
 	
 	public Task2a(double from, double to, double scaling) {
-		super(from, to, scaling, new Diagram("Våglängd /m", "NÅT ANNAT"));
+		super(from, to, scaling, new Diagram("Våglängd /cm", "NÅT ANNAT"));
 		/*x-axis bounds and scaling*/
 		from *= Math.pow(10, -2); // höjd
 		to *= Math.pow(10, -2); // höjd
@@ -25,14 +26,15 @@ public class Task2a extends Task{
 
 		LinkedList<Point> points1 = new LinkedList<>();
 		h = from;
-		while(h <= to){
+		while(h <= D){
 			f0 = n1*R/(n2-n1);
-			double f = 1;
-			points1.add(new Point(h, f));
+			double x = f0 - R + Math.sqrt(Math.pow(R, 2) - Math.pow(h, 2));
+			double f = Math.sqrt(Math.pow(x, 2) + Math.pow(h, 2));
+			points1.add(new Point(h*100, f*100));
 			h += scaling;
 		}
-		
-
-	
+		Plot p1 = new Plot(points1);
+		p1.setColor(Color.blue);
+		getPlots().add(p1);
 	}
 }
