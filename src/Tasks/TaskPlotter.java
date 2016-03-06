@@ -28,6 +28,7 @@ public class TaskPlotter {
 		tasks.add(t2c);
 		
 		for(Task t: tasks){
+			t.compute();
 			LinkedList<Plot> plots = t.getPlots();
 			Diagram d = t.getDiagram();
 			for(Plot p: plots){

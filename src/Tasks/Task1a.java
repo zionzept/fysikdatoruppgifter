@@ -4,46 +4,45 @@ import java.awt.Color;
 import java.util.LinkedList;
 
 import diagram.Diagram;
-import diagram.DiagramDisplay;
 import diagram.Plot;
 import diagram.Point;
 
 public class Task1a extends Task{
+	LinkedList<Point> points1;
+	LinkedList<Point> points2;
+	
+	double n1 = 1.0;	//brytningsindex luft
+	double n2 = 1.75;	//brytningsindex flintglas	
+//	double x;	
+//	double a2;	//brytningsvinkel a2
+//	double Rs;	//Reflektans s-polariserat
+//	double Rp;	//Reflektans p-polariserat
 	
 	public Task1a(double from, double to, int points){
 		super(from, to, points, new Diagram("1a", "infallsvinkel a1/�", "Reflektans", 2, 1));
-		
-		double n1 = 1.0;	//brytningsindex luft
-		double n2 = 1.75;	//brytningsindex flintglas	
-		double a1;	//infallsvinkel a1
-		double a2;	//brytningsvinkel a2
-		double Rs;	//Reflektans s-polariserat
-		double Rp;	//Reflektans p-polariserat
+		points1 = new LinkedList<Point>();	
+		points2 = new LinkedList<Point>();
+	}
+
+	@Override
+	public void compute(double x) {//infallsvinkel x
+		double r1 = Math.toRadians(x);
+		double r2 = Math.asin(n1/n2*Math.sin(r1));	//brytningsvinkel a2 i radianer
 		
 		/*Rs*/
-		LinkedList<Point> points1 = new LinkedList<Point>();
-		a1= from;
-		while(a1 <= to){
-			double r1 = Math.toRadians(a1);
-			double r2 = Math.asin(n1/n2*Math.sin(r1));	//brytningsvinkel a2 i radianer
-			Rs = Math.pow(Math.sin(r1 - r2) / Math.sin(r1 + r2), 2); //Reflektans s-polariserat
-			points1.add(new Point(a1, Rs));
-			a1 += scaling;
-		}
+		double Rs = Math.pow(Math.sin(r1 - r2) / Math.sin(r1 + r2), 2); //Reflektans s-polariserat
+		points1.add(new Point(x, Rs));
+		
+		/*Rp*/
+		double Rp = Math.pow(Math.tan(r1 - r2) / Math.tan(r1 + r2), 2); //Reflektans p-polariserat
+		points2.add(new Point(x, Rp));
+	}
+	
+	@Override
+	public void finish() {
 		Plot p1 = new Plot(points1);
 		p1.setColor(Color.red);
 		getPlots().add(p1);
-		
-		/*Rp*/
-		LinkedList<Point> points2 = new LinkedList<Point>();
-		a1= from;
-		while(a1 <= to){
-			double r1 = Math.toRadians(a1);
-			double r2 = Math.asin(n1/n2*Math.sin(r1));	//brytningsvinkel a2 i radianer
-			Rp = Math.pow(Math.tan(r1 - r2) / Math.tan(r1 + r2), 2); //Reflektans p-polariserat
-			points2.add(new Point(a1, Rp));
-			a1 += scaling;
-		}	
 		
 		Plot p2 = new Plot(points2);
 		p2.setColor(Color.blue);

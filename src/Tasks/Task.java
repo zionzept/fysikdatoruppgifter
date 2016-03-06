@@ -5,17 +5,17 @@ import java.util.LinkedList;
 import diagram.Diagram;
 import diagram.Plot;
 
-public class Task {
+public abstract class Task {
 	private double to;
 	private double from;
-	protected double scaling;
+	protected double step;
 	private LinkedList<Plot> plots;
 	private Diagram diagram;
 	
 	public Task(double from, double to, int points, Diagram diagram){
 		this.from = from;
 		this.to = to;
-		this.scaling =  (to - from) / points;
+		this.step =  (to - from) / points;
 		this.plots = new LinkedList<Plot>();
 		this.diagram = diagram;
 	}
@@ -27,4 +27,16 @@ public class Task {
 	public Diagram getDiagram(){
 		return diagram;
 	}
+	
+	public void compute() {
+		double x = from;
+		while (x <= to) {
+			compute(x);
+			x += step;
+		}
+		finish();
+	}
+	
+	public abstract void compute(double x);
+	public abstract void finish();
 }
