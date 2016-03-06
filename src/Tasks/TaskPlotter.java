@@ -19,10 +19,10 @@ public class TaskPlotter {
 		Task t2a = new Task2a(0,0,1*Math.pow(10, -2));
 		tasks.add(t2a);
 		
-		Task2b t2b = new Task2b(400 *Math.pow(10,-9),  700 *Math.pow(10,-9), 10 *Math.pow(10,-9));
+		Task2b t2b = new Task2b(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), 10 *Math.pow(10,-3));
 		tasks.add(t2b);
 	
-		Task2b t2c = new Task2b(400 *Math.pow(10,-9),  700 *Math.pow(10,-9), 10 *Math.pow(10,-9));
+		Task2b t2c = new Task2b(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), 10 *Math.pow(10,-3));
 		tasks.add(t2c);
 		
 		for(Task t: tasks){

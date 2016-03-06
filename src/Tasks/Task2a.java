@@ -12,15 +12,13 @@ public class Task2a extends Task{
 	
 	public Task2a(double from, double to, double scaling) {
 		super(from, to, scaling, new Diagram("höjd h/cm", "avstånd f/cm"));
-		/*x-axis bounds and scaling*/
-		scaling *= Math.pow(10, -2);
 		
-		double h; //höjd
+		double h; //höjd, m
 		double f0; //avstånd till bildbrännvidd från origo
 		double n1 = 1; //brytningsindex luft
 		double n2 = 1.5; //brytningsindex glas;
 		double R = 0.15; //Krï¿½kningsradie, m
-		double D = 0.1; //Diameter i meter
+		double D = 0.1; //Diameter, m
 
 		LinkedList<Point> points1 = new LinkedList<>();
 		h = from;
