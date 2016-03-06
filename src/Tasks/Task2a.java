@@ -11,10 +11,8 @@ import diagram.Point;
 public class Task2a extends Task{
 	
 	public Task2a(double from, double to, double scaling) {
-		super(from, to, scaling, new Diagram("Våglängd /cm", "NÅT ANNAT"));
+		super(from, to, scaling, new Diagram("höjd h/cm", "avstånd f/cm"));
 		/*x-axis bounds and scaling*/
-		from *= Math.pow(10, -2); // höjd
-		to *= Math.pow(10, -2); // höjd
 		scaling *= Math.pow(10, -2);
 		
 		double h; //höjd
