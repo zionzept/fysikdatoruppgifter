@@ -1,8 +1,11 @@
 package diagram;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.math.BigDecimal;
 import java.math.MathContext;
@@ -12,12 +15,16 @@ public class Diagram {
 
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 400;
-	private static final int SPACING = 40;
+	private static final int SPACING = 50;
 	private static final int MARK_LENGTH = 4;
 	private static final int TEXT_SPACING = 4;
+	private static final int CAPTION_SPACING = 30;
 	
-	private String xcaption;
+	private String title;
+	private String xCaption;
 	private String ycaption;
+	private int xSignificants;
+	private int ySignificants;
 	
 	private LinkedList<Plot> plots;
 	private Bounds bounds;
@@ -25,10 +32,13 @@ public class Diagram {
 	private BufferedImage image;
 	private boolean imageExpired;
 	
-	public Diagram(String xcaption, String ycaption) {
+	public Diagram(String title, String xcaption, String ycaption, int xSignificants, int ySignificants) {
 		this.plots = new LinkedList<>();
-		this.xcaption = xcaption;
+		this.title = title;
+		this.xCaption = xcaption;
 		this.ycaption = ycaption;
+		this.xSignificants = xSignificants;
+		this.ySignificants = ySignificants;
 		this.bounds = Bounds.DEFAULT;
 		imageExpired = true;
 	}
@@ -43,31 +53,39 @@ public class Diagram {
 		imageExpired = true;
 	}
 	
-	public Image getImage() {
+	public BufferedImage getImage() {
 		if (imageExpired) {
 			generateImage();
 		}
 		return image;
 	}
 	
-	public Image generateImage() {
+	public BufferedImage generateImage() {
 		image = new BufferedImage(WIDTH + 2 * SPACING, HEIGHT + 2 * SPACING, BufferedImage.TYPE_4BYTE_ABGR);
-		Graphics g = image.getGraphics();
+		Graphics2D g = (Graphics2D)image.getGraphics();
+	    RenderingHints rh1 = new RenderingHints(
+	             RenderingHints.KEY_TEXT_ANTIALIASING,
+	             RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
+	    RenderingHints rh2 = new RenderingHints(
+	             RenderingHints.KEY_ANTIALIASING,
+	             RenderingHints.VALUE_ANTIALIAS_ON);
+	    g.setRenderingHints(rh1);
+//	    g.setRenderingHints(rh2);
 		g.fillRect(0, 0, WIDTH + 2 * SPACING, HEIGHT + 2 * SPACING);
 		
 		g.setColor(Color.BLACK);
 		
-		g.drawLine(SPACING, SPACING, SPACING, SPACING + HEIGHT);
-		g.drawLine(SPACING + WIDTH, SPACING, SPACING + WIDTH, SPACING + HEIGHT);
-		g.drawLine(SPACING, SPACING, SPACING + WIDTH, SPACING);
-		g.drawLine(SPACING, SPACING + HEIGHT, SPACING + WIDTH, SPACING + HEIGHT);
+		g.drawLine(SPACING - 1, SPACING - 1, SPACING - 1, SPACING + HEIGHT + 1);
+		g.drawLine(SPACING + WIDTH + 1, SPACING - 1, SPACING + WIDTH + 1, SPACING + HEIGHT + 1);
+		g.drawLine(SPACING - 1, SPACING - 1, SPACING + WIDTH + 1, SPACING - 1);
+		g.drawLine(SPACING - 1, SPACING + HEIGHT + 1, SPACING + WIDTH + 1, SPACING + HEIGHT + 1);
 		
 		LinkedList<Double> xMarkings = quantify(bounds.getLeft(), bounds.getRight(), 9);
 		LinkedList<Double> yMarkings = quantify(bounds.getTop(), bounds.getBottom(), 9);
 		for (Double xd : xMarkings) {
 			int x = convertX(xd);
 			g.drawLine(SPACING + x, HEIGHT + SPACING, SPACING + x, HEIGHT + SPACING - MARK_LENGTH);
-			BigDecimal d = new BigDecimal(xd).round(new MathContext(3));
+			BigDecimal d = new BigDecimal(xd).round(new MathContext(xSignificants));
 			int xOffset = -g.getFontMetrics().stringWidth(d.toString()) / 2;
 			int yOffset = (int)Math.round(g.getFontMetrics().getHeight() / 3d * 2d);
 			g.drawString(d.toString(), SPACING + x + xOffset, HEIGHT + SPACING + TEXT_SPACING + yOffset);
@@ -75,26 +93,28 @@ public class Diagram {
 		for (Double yd : yMarkings) {
 			int y = convertY(yd);
 			g.drawLine(SPACING, SPACING + y, SPACING + MARK_LENGTH, SPACING + y);
-			BigDecimal d = new BigDecimal(yd).round(new MathContext(3));
+			BigDecimal d = new BigDecimal(yd).round(new MathContext(ySignificants));
 			int xOffset = -g.getFontMetrics().stringWidth(d.toString());
 			int yOffset = (int)Math.round(g.getFontMetrics().getHeight() / 3d);
 			g.drawString(d.toString(), SPACING - TEXT_SPACING + xOffset, SPACING + y + yOffset);
 		}
 		
-		System.out.println("Bounds " + bounds);
-		System.out.println("plots: " + plots.size());
+//		g.setFont(new Font("Arial", 14, 0));
+		int xCaptionWidth = g.getFontMetrics().stringWidth(xCaption);
+		int xCaptionHeight = g.getFontMetrics().getHeight();
+		System.out.println(xCaptionWidth);
+		
+		g.drawString(xCaption, SPACING + WIDTH / 2 - xCaptionWidth / 2, SPACING + HEIGHT + CAPTION_SPACING + xCaptionHeight / 3 * 2);
+		
 		for (Plot plot : plots) {
 			g.setColor(plot.getColor());
 			LinkedList<Point> points = plot.getPoints();
 			boolean first = true;
 			int prevX = 0;
 			int prevY = 0;
-			System.out.println("  Points: " + points.size());
 			for (Point point : points) {
-				System.out.println("   " + point.getX() + " " + point.getY());
 				int x = convertX(point.getX());
 				int y = convertY(point.getY());
-				System.out.println("  convert: " + point.getX() + "," + point.getY() + "  ->  " + x + ", " + y);
 				if (first) {
 					g.drawLine(SPACING + x, SPACING + y, SPACING + x, SPACING + y);
 					first = false;
@@ -111,17 +131,15 @@ public class Diagram {
 	}
 	
 	private int convertX(double x) {
-		System.out.println("x: " + x + " : " + (x - bounds.getLeft()) + "  /  " + (bounds.getRight() - bounds.getLeft()));
 		return (int)(WIDTH * (x - bounds.getLeft()) / (bounds.getRight() - bounds.getLeft()));
 	}
 	
 	private int convertY(double y) {
-		System.out.println("y: " + y + " : " + (y - bounds.getTop()) + "  /  " + (bounds.getBottom() - bounds.getTop()));
 		return (int)(HEIGHT - HEIGHT * (y - bounds.getTop()) / (bounds.getBottom() - bounds.getTop()));
 	}
 	
-	private LinkedList<Double> quantify(double low, double high, double preferredValues) {
-		double estStep = (high - low) / preferredValues;
+	private LinkedList<Double> quantify(double low, double high, double preferredSteps) {
+		double estStep = (high - low) / preferredSteps;
 		double step = 1;
 		double stepUnder = 0;
 		double stepOver = 0;
@@ -170,6 +188,11 @@ public class Diagram {
 			value -= step;
 		}
 		return values;
+	}
+	
+	@Override
+	public String toString() {
+		return title;
 	}
 }
 

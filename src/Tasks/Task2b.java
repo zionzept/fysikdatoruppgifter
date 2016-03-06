@@ -8,8 +8,8 @@ import diagram.Plot;
 import diagram.Point;
 
 public class Task2b extends Task {
-	public Task2b(double from, double to, double scaling) {
-		super(from, to, scaling, new Diagram("Våglängd λ/µm", "brytningsindex n"));
+	public Task2b(double from, double to, int points) {
+		super(from, to, points, new Diagram("2b", "Våglängd λ/µm", "brytningsindex n", 2, 4));
 
 		double lambda; // vï¿½glï¿½ngd
 		double squaredN; // brytningsindex BK7 glas, upphï¿½jt med 2

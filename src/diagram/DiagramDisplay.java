@@ -1,8 +1,14 @@
 package diagram;
 
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 public class DiagramDisplay {
@@ -15,7 +21,7 @@ public class DiagramDisplay {
 	public void show() {
 		JFrame frame = new JFrame(diagram.toString());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(700, 520);
+		frame.setSize(720, 550);
 		frame.setLocationRelativeTo(null);
 		@SuppressWarnings("serial")
 		JPanel panel = new JPanel() {
@@ -25,6 +31,19 @@ public class DiagramDisplay {
 			}
 		};
 		frame.add(panel);
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menuFile = new JMenu("File");
+		JMenuItem itemExport = new JMenuItem("Export");
+		itemExport.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("expo");
+				new ImageExporter(diagram.getImage());
+			}
+		});
+		menuFile.add(itemExport);
+		menuBar.add(menuFile);
+		frame.setJMenuBar(menuBar);
 		frame.setVisible(true);
 	}
 }
