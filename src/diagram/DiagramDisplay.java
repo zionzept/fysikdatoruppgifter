@@ -4,7 +4,6 @@ import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -21,7 +20,7 @@ public class DiagramDisplay {
 	public void show() {
 		JFrame frame = new JFrame(diagram.toString());
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setSize(720, 550);
+		frame.setSize(727, 573);
 		frame.setLocationRelativeTo(null);
 		@SuppressWarnings("serial")
 		JPanel panel = new JPanel() {
