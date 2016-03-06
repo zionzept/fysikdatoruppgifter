@@ -117,7 +117,7 @@ public class Diagram {
 	
 	private int convertY(double y) {
 		System.out.println("y: " + y + " : " + (y - bounds.getTop()) + "  /  " + (bounds.getBottom() - bounds.getTop()));
-		return (int)(HEIGHT * (y - bounds.getTop()) / (bounds.getBottom() - bounds.getTop()));
+		return (int)(HEIGHT - HEIGHT * (y - bounds.getTop()) / (bounds.getBottom() - bounds.getTop()));
 	}
 	
 	private LinkedList<Double> quantify(double low, double high, double preferredValues) {
