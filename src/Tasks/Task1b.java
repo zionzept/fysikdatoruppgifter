@@ -14,26 +14,20 @@ public class Task1b extends Task {
 	private final double n1 = 1.0; // brytningsindex luft
 	private final double n2 = 1.75; // brytningsindex flintglas
 	
-//	double a1; // brytningsvinkel a1
-//	double a2; // infallsvinkel a2
-//	double Rs; // Reflektans s-polariserat
-//	double Rp; // Reflektans p-polariserat
 	public Task1b(double from, double to, int points) {
-		super(from, to, points, new Diagram("1b", "infallsvinkel a2/ï¿½", "Reflektans", 2, 1));
+		super(from, to, points, new Diagram("1b", "Infallsvinkel a2/°", "Reflektans", 2, 1));
 		this.points1 = new LinkedList<Point>();
 		this.points2 = new LinkedList<Point>();
 	}
 
 	@Override
-	public void compute(double x) {
-		double r2 = Math.toRadians(x);
-		double r1 = Math.asin(n2 / n1 * Math.sin(r2)); // brytningsvinkel a1 i radianer
+	public void compute(double x) {						//infallsvinkel x i grader
+		double r2 = Math.toRadians(x);					//infallsvinkel till radianer
+		double r1 = Math.asin(n2 / n1 * Math.sin(r2));	// brytningsvinkel a1 i radianer
 	
-		/* Rs */
 		double Rs = Math.pow(Math.sin(r2 - r1) / Math.sin(r2 + r1), 2); // Reflektans s-polariserat
 		points1.add(new Point(x, Rs));
-		
-		/* Rp */
+
 		double Rp = Math.pow(Math.tan(r2 - r1) / Math.tan(r2 + r1), 2); // Reflektans p-polariserat
 		points2.add(new Point(x, Rp));
 	}
