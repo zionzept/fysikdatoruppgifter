@@ -20,11 +20,12 @@ public class Task2b extends Task {
 
 		lambda = from;
 		while (lambda <= to) {
-			squaredN = 2.271176 - 9.700709 * Math.pow(10, 3) * lambda * lambda + 0.0110971 * Math.pow(lambda, -2)
+			squaredN = 2.271176 - 9.700709 * Math.pow(10, -3) * lambda * lambda + 0.0110971 * Math.pow(lambda, -2)
 			+ 4.622809 * Math.pow(10, -5) * Math.pow(lambda, -4)
 			+ 1.616105 * Math.pow(10, -5) * Math.pow(lambda, -6)
 			- 8.285043 * Math.pow(10, -7) * Math.pow(lambda, -8);
-			points1.add(new Point(lambda*Math.pow(10, 9), Math.sqrt(squaredN)));
+			Point p = new Point(lambda*Math.pow(10, 9), Math.sqrt(squaredN));
+			points1.add(p);
 			lambda += scaling;
 		}
 		Plot p1 = new Plot(points1);
