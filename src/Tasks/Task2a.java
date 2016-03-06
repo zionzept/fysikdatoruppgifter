@@ -22,9 +22,16 @@ public class Task2a extends Task{
 
 	@Override
 	public void compute(double x) {//höjd, m
-		double f0 = n1*R/(n2-n1);
-		double xx = f0 - R + Math.sqrt(Math.pow(R, 2) - Math.pow(x, 2));
-		double f = Math.sqrt(Math.pow(xx, 2) + Math.pow(x, 2));
+		
+		double i = Math.asin(x / R);
+		double r = Math.asin(n1 * Math.sin(i) / n2);
+		double v = Math.PI / 2 - i + r;
+		double d = Math.sqrt(R * R - x * x);
+		double f = R - d + x * Math.tan(v);
+		
+//		double f0 = n1*R/(n2-n1);
+//		double xx = f0 - R + Math.sqrt(Math.pow(R, 2) - Math.pow(x, 2));
+//		double f = Math.sqrt(Math.pow(xx, 2) + Math.pow(x, 2));
 		points.add(new Point(x*100, f*100));
 	}
 

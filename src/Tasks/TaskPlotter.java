@@ -18,7 +18,7 @@ public class TaskPlotter {
 		Task t1b = new Task1b(1,90,resolution);
 		tasks.add(t1b);
 		
-		Task t2a = new Task2a(0,0.05,resolution);
+		Task t2a = new Task2a(0.0000001,0.05,resolution);
 		tasks.add(t2a);
 		
 		Task t2b = new Task2b(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), resolution);
