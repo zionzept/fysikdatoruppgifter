@@ -9,8 +9,8 @@ import diagram.Plot;
 import diagram.Point;
 
 public class Task1b extends Task {
-	public Task1b(double from, double to, double scaling) {
-		super(from, to, scaling, new Diagram("infallsvinkel a2/°", "Reflektans"));
+	public Task1b(double from, double to, int points) {
+		super(from, to, points, new Diagram("1b", "infallsvinkel a2/ï¿½", "Reflektans", 2, 2));
 		/* x-axis bounds and scaling */
 
 		double n1 = 1.0; // brytningsindex luft

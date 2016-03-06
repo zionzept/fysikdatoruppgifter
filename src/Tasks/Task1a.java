@@ -10,8 +10,8 @@ import diagram.Point;
 
 public class Task1a extends Task{
 	
-	public Task1a(double from, double to, double scaling){
-		super(from, to, scaling, new Diagram("infallsvinkel a1/°", "Reflektans"));
+	public Task1a(double from, double to, int points){
+		super(from, to, points, new Diagram("1a", "infallsvinkel a1/ï¿½", "Reflektans", 2, 1));
 		
 		double n1 = 1.0;	//brytningsindex luft
 		double n2 = 1.75;	//brytningsindex flintglas	

@@ -8,14 +8,14 @@ import diagram.Plot;
 public class Task {
 	private double to;
 	private double from;
-	private double scaling;
+	protected double scaling;
 	private LinkedList<Plot> plots;
 	private Diagram diagram;
 	
-	public Task(double from, double to, double scaling, Diagram diagram){
+	public Task(double from, double to, int points, Diagram diagram){
 		this.from = from;
 		this.to = to;
-		this.scaling = scaling;
+		this.scaling =  (to - from) / points;
 		this.plots = new LinkedList<Plot>();
 		this.diagram = diagram;
 	}
