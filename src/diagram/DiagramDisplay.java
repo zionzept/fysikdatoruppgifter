@@ -37,8 +37,7 @@ public class DiagramDisplay {
 		itemExport.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				ImageExporter exporter = new ImageExporter(diagram.getImage());
-				exporter.export();
+				new ImageExporter(diagram.getImage());
 			}
 		});
 		menuFile.add(itemExport);

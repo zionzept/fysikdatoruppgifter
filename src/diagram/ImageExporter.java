@@ -20,9 +20,6 @@ public class ImageExporter {
 	
 	public ImageExporter(BufferedImage image) {
 		this.image = image;
-	}
-	
-	public void export() {
 		JFrame frame = new JFrame("Export image");
 		frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		JPanel panel = new JPanel();
