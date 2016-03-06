@@ -14,12 +14,12 @@ public class Diagram {
 
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 400;
-	private static final int SPACING = 60;
+	private static final int SPACING = 68;
 	private static final int END_SPACING = 30;
 	private static final int MARK_LENGTH = 4;
 	private static final int TEXT_SPACING = 4;
 	private static final int X_CAPTION_SPACING = 30;
-	private static final int Y_CAPTION_SPACING = 40;
+	private static final int Y_CAPTION_SPACING = 44;
 	
 	private String title;
 	private String xCaption;
@@ -77,7 +77,7 @@ public class Diagram {
 		g.drawLine(SPACING - 1, END_SPACING + HEIGHT + 1, SPACING + WIDTH + 1, END_SPACING + HEIGHT + 1);
 		
 		LinkedList<Double> xMarkings = quantify(bounds.getLeft(), bounds.getRight(), 9);
-		LinkedList<Double> yMarkings = quantify(bounds.getTop(), bounds.getBottom(), 9);
+		LinkedList<Double> yMarkings = quantify(bounds.getTop(), bounds.getBottom(), 6);
 		for (Double xd : xMarkings) {
 			int x = convertX(xd);
 			g.drawLine(SPACING + x, HEIGHT + END_SPACING, SPACING + x, HEIGHT + END_SPACING - MARK_LENGTH);

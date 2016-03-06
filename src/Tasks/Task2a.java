@@ -16,7 +16,7 @@ public class Task2a extends Task{
 	
 //	double f0; //avstånd till bildbrännvidd från origo
 	public Task2a(double from, double to, int points) {
-		super(from, to, points, new Diagram("2a", "höjd h/cm", "avstånd f/cm", 1, 3));
+		super(from, to, points, new Diagram("2a", "höjd h/cm", "avstånd f/cm", 2, 4));
 		this.points = new LinkedList<>();
 	}
 

@@ -19,7 +19,7 @@ public class Task1b extends Task {
 //	double Rs; // Reflektans s-polariserat
 //	double Rp; // Reflektans p-polariserat
 	public Task1b(double from, double to, int points) {
-		super(from, to, points, new Diagram("1b", "infallsvinkel a2/�", "Reflektans", 2, 2));
+		super(from, to, points, new Diagram("1b", "infallsvinkel a2/�", "Reflektans", 2, 1));
 		this.points1 = new LinkedList<Point>();
 		this.points2 = new LinkedList<Point>();
 	}

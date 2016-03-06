@@ -21,10 +21,10 @@ public class TaskPlotter {
 		Task t2a = new Task2a(0,0.05,resolution);
 		tasks.add(t2a);
 		
-		Task2b t2b = new Task2b(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), resolution);
+		Task t2b = new Task2b(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), resolution);
 		tasks.add(t2b);
 		
-		Task2c t2c = new Task2c(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), resolution);
+		Task t2c = new Task2c(400 *Math.pow(10,-3),  700 *Math.pow(10,-3), resolution);
 		tasks.add(t2c);
 		
 		for(Task t: tasks){
