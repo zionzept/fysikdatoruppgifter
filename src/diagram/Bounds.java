@@ -3,6 +3,7 @@ package diagram;
 public class Bounds {
 	public static final Bounds DEFAULT = new Bounds(0, 0, 10, 10);
 	public static final Bounds ZERO = new Bounds(0, 0, 0, 0);
+	
 	private final double left;
 	private final double top;
 	private final double right;

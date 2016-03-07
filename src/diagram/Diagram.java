@@ -11,7 +11,6 @@ import java.math.MathContext;
 import java.util.LinkedList;
 
 public class Diagram {
-
 	private static final int WIDTH = 600;
 	private static final int HEIGHT = 400;
 	private static final int SPACING = 68;
@@ -196,11 +195,3 @@ public class Diagram {
 		return title;
 	}
 }
-
-//BufferedImage txtImage = new BufferedImage(100, 12, BufferedImage.TYPE_4BYTE_ABGR);
-//txtImage.getGraphics().drawString(d.toString(), 2, 6);
-//AffineTransform at = new AffineTransform();
-//at.rotate(Math.PI / 2, 1, 1);
-//AffineTransformOp op = new AffineTransformOp(at, AffineTransformOp.TYPE_BILINEAR);
-//txtImage = op.filter(txtImage, null);
-//g.drawImage(txtImage, SPACING - TEXT_SPACING, SPACING + y, null);
