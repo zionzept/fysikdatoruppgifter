@@ -32,6 +32,7 @@ public class ImageExporter {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				exportImage(textField.getText());
+				frame.dispose();
 			}
 		});
 		panel.add(exportButton);
